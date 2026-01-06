@@ -1,5 +1,7 @@
 import { useGetQuestionsQuery } from "../../store/services/questionApi";
 import Pagination from "../Pagination/Pagination";
+import QuestionItem from "../QuestionItem/QuestionItem";
+import styles from "./QuestionsList.module.css";
 
 const QuestionsList = () => {
   const { data: questions = [], isLoading } = useGetQuestionsQuery();
@@ -9,10 +11,11 @@ const QuestionsList = () => {
   }
 
   return (
-    <div>
+    <div className={styles.list}>
+      <h3>Вопросы React, JavaScript</h3>
       <ul>
-        {questions.map((q) => {
-          return <li key={q.id}>{q.title}</li>;
+        {questions.map((question) => {
+          return <QuestionItem key={question.id} question={question} />;
         })}
       </ul>
       <Pagination />

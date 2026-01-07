@@ -6,8 +6,16 @@ const questionApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
   endpoints: (builder) => ({
     getQuestions: builder.query({
-      query: () => `questions/public-questions`,
-      transformResponse: (response: { data: any[] }) => response.data,
+      query: ({ page = 1, limit = 10 }) => ({
+        url: `questions/public-questions`,
+        params: {
+          page,
+          limit,
+        },
+      }),
+      transformResponse: (response: { data: any[]; total: number }) => {
+        return { data: response.data, total: response.total };
+      },
     }),
   }),
 });

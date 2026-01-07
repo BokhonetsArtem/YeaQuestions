@@ -29,7 +29,7 @@ const QuestionItem = ({ question }) => {
         </div>
       </div>
 
-      <div className={styles.content}>
+      <div className={`${styles.content} ${isOpen ? "" : styles.close}`}>
         <div className={styles.parameters}>
           <div className={styles.rate}>
             Рейтинг: <span>{rate}</span>

@@ -32,7 +32,8 @@
   row-gap: 24px;
 }
 
-.open {
+.close {
+  display: none;
 }
 
 .parameters {

@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.btnArrow {
+  width: 28px;
+  height: 28px;
+  padding-top: 2px;
+  border-radius: 50%;
+  border: 1px solid #6a0bff;
+  background-color: white;
+}
+
+.btnNumber {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 2px;
+  width: 21px;
+  height: 25px;
+  background-color: white;
+  border: none;
+}
+
+.pagination button:not(:disabled):hover {
+  background: #cecccc;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+}
+
+.active {
+  background: #6a0bff;
+  color: white;
+}
+
+.pagination .dots {
+  padding: 8px 12px;
+  color: #999;
+  cursor: default;
+  background: transparent;
+}

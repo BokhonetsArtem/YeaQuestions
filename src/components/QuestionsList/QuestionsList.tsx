@@ -1,14 +1,39 @@
+import { useState } from "react";
 import { useGetQuestionsQuery } from "../../store/services/questionApi";
 import Pagination from "../Pagination/Pagination";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import styles from "./QuestionsList.module.css";
+import { limit } from "../../constants";
 
 const QuestionsList = () => {
-  const { data: questions = [], isLoading } = useGetQuestionsQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, isLoading } = useGetQuestionsQuery({
+    page: currentPage,
+    limit,
+  });
+  const questions = data?.data ?? [];
+  const total = data?.total ?? 0;
+  const totalPages = Math.ceil(total / limit);
 
   if (isLoading) {
     return <p>Загрузка...</p>;
   }
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handlePageClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className={styles.list}>
@@ -18,7 +43,13 @@ const QuestionsList = () => {
           return <QuestionItem key={question.id} question={question} />;
         })}
       </ul>
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handleNextPage={handleNextPage}
+        handlePrevPage={handlePrevPage}
+        handlePageClick={handlePageClick}
+      />
     </div>
   );
 };

@@ -4,7 +4,7 @@
   justify-content: space-between;
   background-color: #fff;
   column-gap: 55px;
-  padding: 0 112px;
+  padding-inline: 112px;
 }
 
 .logo {
@@ -23,4 +23,27 @@
   display: flex;
   column-gap: 24px;
   margin-left: auto;
+}
+
+.login {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  color: #6a0bff;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.registration {
+  border-radius: 12px;
+  padding: 13px 0px;
+  width: 170px;
+  height: 48px;
+  background-color: #6a0bff;
+  border: none;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
 }

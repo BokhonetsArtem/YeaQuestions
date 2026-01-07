@@ -1,0 +1,33 @@
+.searchWrapper {
+  position: relative;
+  width: 250px;
+}
+
+.input {
+  border: 1px solid #e8e8e8;
+  border-radius: 68px;
+  padding: 12px 48px;
+  width: 344px;
+  height: 48px;
+  transition: border 0.3s ease;
+}
+
+.input:hover {
+  border: 1px solid #6a0bff;
+  cursor: text;
+}
+
+.input:focus {
+  border-color: #6a0bff;
+  outline: none;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}

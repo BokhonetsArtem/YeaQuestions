@@ -21,8 +21,8 @@ const Header = () => {
         </ul>
       </nav>
       <div className={styles.authorization}>
-        <button>Вход</button>
-        <button>Регистрация</button>
+        <button className={styles.login}>Вход</button>
+        <button className={styles.registration}>Регистрация</button>
       </div>
     </header>
   );

@@ -1,17 +1,20 @@
+import SearchFilter from "../SearchFilter/SearchFilter";
+import styles from "./Filters.module.css";
+import SpecializationFilter from "../SpecializationFilter/SpecializationFilter";
+import SkillsFilter from "../SkillsFilter/SkillsFilter";
+import ComplexityFilter from "../ComplexityFilter/ComplexityFilter";
+import RatingFilter from "../RatingFilter/RatingFilter";
+
 const Filters = () => {
-  // return (
-  //   <div>
-  //     <input
-  //       className={styles.input}
-  //       type="text"
-  //       placeholder="Введите запрос"
-  //     />
-  //     <div className={styles.specialization}></div>
-  //     <div className={styles.skills}></div>
-  //     <div className={styles.lvl}></div>
-  //     <div className={styles.rating}></div>
-  //   </div>
-  // );
+  return (
+    <div className={styles.filters}>
+      <SearchFilter />
+      <SpecializationFilter />
+      <SkillsFilter />
+      <ComplexityFilter />
+      <RatingFilter />
+    </div>
+  );
 };
 
 export default Filters;

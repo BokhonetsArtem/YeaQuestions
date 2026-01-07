@@ -1,0 +1,37 @@
+.complexityBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+.itemWrapper {
+  width: 296px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 39px;
+  border: 1px solid #bababa;
+  border-radius: 12px;
+  padding: 10px 12px;
+  height: 39px;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #303030;
+  margin-inline-end: 8px;
+}
+
+.button:hover {
+  color: white;
+  background-color: #5509cc;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 8px;
+}

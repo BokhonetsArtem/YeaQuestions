@@ -1,0 +1,13 @@
+.backButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #6a0bff;
+}
+
+.backIcon {
+  transform: rotate(90deg);
+}

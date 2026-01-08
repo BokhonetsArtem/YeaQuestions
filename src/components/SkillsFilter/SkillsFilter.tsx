@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./SkillsFilter.module.css";
-import { useGetSkillsQuery } from "../../store/services/skills";
+import { useGetSkillsQuery } from "../../store/services/skillsApi";
 
 const SkillsFilter = () => {
   const [allItems, setAllItems] = useState(false);

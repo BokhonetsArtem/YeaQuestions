@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import questionApi from "./services/questionApi";
 import specializationApi from "./services/specializationApi";
-import skillsApi from "./services/skills";
+import skillsApi from "./services/skillsApi";
 
 const rootReducer = {
   [questionApi.reducerPath]: questionApi.reducer,

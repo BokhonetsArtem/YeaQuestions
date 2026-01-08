@@ -1,4 +1,4 @@
-import getPaginationPages from "../../helpers/getPaginationPages";
+import getPaginationPages from "../../utils/getPaginationPages";
 import arrowLeft from "../../shared/assets/icons/arrow-left.svg";
 import arrowRight from "../../shared/assets/icons/arrow-right.svg";
 import styles from "./Pagination.module.css";

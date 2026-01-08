@@ -1,6 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../../constants";
 
+interface ISkill {
+  title: string;
+  imageSrc: string;
+}
+
+export interface IQuestion {
+  title: string;
+  description: string;
+  shortAnswer: string;
+  longAnswer: string;
+  rate: number;
+  complexity: number;
+  keywords: string[];
+  questionSkills: ISkill[];
+}
+
 const questionApi = createApi({
   reducerPath: "questionApi",
   baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
@@ -17,9 +33,14 @@ const questionApi = createApi({
         return { data: response.data, total: response.total };
       },
     }),
+    getQuestionById: builder.query<IQuestion, string>({
+      query: (id) => ({
+        url: `questions/public-questions/${id}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetQuestionsQuery } = questionApi;
+export const { useGetQuestionsQuery, useGetQuestionByIdQuery } = questionApi;
 
 export default questionApi;

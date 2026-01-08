@@ -1,5 +1,6 @@
 import styles from "./QuestionSidebar.module.css";
 import type { IQuestion } from "../../store/services/questionApi";
+import skillImgSkeleton from "../../shared/assets/images/skill-img-skeleton.svg";
 
 type QuestionSidebarProps = {
   question: Pick<
@@ -32,7 +33,7 @@ const QuestionSidebar = ({ question }: QuestionSidebarProps) => {
               <button className={styles.skillBtn} key={index}>
                 <img
                   className={styles.skillImg}
-                  src={skill.imageSrc}
+                  src={skillImgSkeleton}
                   alt="Skill"
                 />
                 {skill.title}

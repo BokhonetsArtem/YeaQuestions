@@ -4,8 +4,16 @@ import openCloseArrow from "../../shared/assets/icons/open-close-arrow-icon.svg"
 import arrowRight from "../../shared/assets/icons/arrow-right.svg";
 import circle from "../../shared/assets/icons/circle.svg";
 import styles from "./QuestionItem.module.css";
+import type { IQuestion } from "../../store/services/questionApi";
 
-const QuestionItem = ({ question }) => {
+type QuestionItemProps = {
+  question: Pick<
+    IQuestion,
+    "id" | "title" | "rate" | "complexity" | "imageSrc" | "shortAnswer"
+  >;
+};
+
+const QuestionItem = ({ question }: QuestionItemProps) => {
   const { id, title, rate, complexity, imageSrc, shortAnswer } = question;
   const [isOpen, setIsOpen] = useState(false);
 

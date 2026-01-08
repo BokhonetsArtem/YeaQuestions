@@ -59,6 +59,8 @@
 }
 
 .skillBtn {
+  display: flex;
+  align-items: center;
   border: 1px solid #6a0bff;
   border-radius: 12px;
   padding: 10px 12px;

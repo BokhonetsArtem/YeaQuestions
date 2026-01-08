@@ -37,8 +37,8 @@ const QuestionsList = () => {
 
   return (
     <div className={styles.list}>
-      <h3>Вопросы React, JavaScript</h3>
-      <ul>
+      <h3>Вопросы</h3>
+      <ul className={styles.items}>
         {questions.map((question) => {
           return <QuestionItem key={question.id} question={question} />;
         })}

@@ -76,3 +76,16 @@ p {
   background: white;
   padding: 24px;
 }
+pre {
+  background-color: #1e1e2f;
+  color: #f8f8f2;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin: 1.5rem 0;
+  position: relative;
+}

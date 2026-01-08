@@ -7,6 +7,8 @@ interface ISkill {
 }
 
 export interface IQuestion {
+  id: string;
+  imageSrc: string;
   title: string;
   description: string;
   shortAnswer: string;

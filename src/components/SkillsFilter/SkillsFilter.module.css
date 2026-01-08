@@ -35,11 +35,10 @@ h5 {
   background-color: #5509cc;
 }
 
-.button:not(:last-child) {
-  margin-bottom: 8px;
-}
-
 .itemWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
   width: 296px;
 }
 

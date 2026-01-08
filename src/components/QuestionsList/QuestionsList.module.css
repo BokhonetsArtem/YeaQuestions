@@ -9,8 +9,16 @@
   background: white;
 }
 
+.items {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
 h3 {
   font-weight: 500;
   font-size: 24px;
   line-height: 120%;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #ccc;
 }

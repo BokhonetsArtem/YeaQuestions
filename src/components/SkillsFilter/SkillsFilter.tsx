@@ -1,14 +1,15 @@
 import { useState } from "react";
 import styles from "./SkillsFilter.module.css";
 import { useGetSkillsQuery } from "../../store/services/skillsApi";
+import skillImgSkeleton from "../../shared/assets/images/skill-img-skeleton.svg";
 
 const SkillsFilter = () => {
   const [allItems, setAllItems] = useState(false);
 
   const { data: items = [] } = useGetSkillsQuery();
 
-  const previewItems = items.slice(0, 8);
-  const restItems = items.slice(8);
+  const previewItems = items.slice(0, 4);
+  const restItems = items.slice(4);
 
   return (
     <div className={styles.skillsBlock}>
@@ -18,7 +19,7 @@ const SkillsFilter = () => {
           return (
             <button className={styles.button} key={item.id}>
               <img
-                src={item.imageSrc}
+                src={skillImgSkeleton}
                 alt="Skill's image"
                 width={18}
                 height={18}
@@ -35,7 +36,7 @@ const SkillsFilter = () => {
             return (
               <button className={styles.button} key={item.id}>
                 <img
-                  src={item.imageSrc}
+                  src={skillImgSkeleton}
                   alt="Skill's image"
                   width={18}
                   height={18}

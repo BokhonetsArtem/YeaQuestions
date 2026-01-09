@@ -4,6 +4,7 @@ import QuestionSidebar from "../../components/QuestionSidebar/QuestionSidebar";
 import { useParams, Link } from "react-router-dom";
 import { useGetQuestionByIdQuery } from "../../store/services/questionApi";
 import styles from "./QuestionDetails.module.css";
+import Loading from "../../components/Loading/Loading";
 
 const QuestionDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +13,7 @@ const QuestionDetails = () => {
   });
 
   if (isLoading || !question) {
-    return <p>Загрузка...</p>;
+    return <Loading />;
   }
 
   return (

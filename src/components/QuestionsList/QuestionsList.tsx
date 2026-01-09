@@ -4,6 +4,7 @@ import Pagination from "../Pagination/Pagination";
 import QuestionItem from "../QuestionItem/QuestionItem";
 import styles from "./QuestionsList.module.css";
 import { limit } from "../../constants";
+import Loading from "../Loading/Loading";
 
 const QuestionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +17,7 @@ const QuestionsList = () => {
   const totalPages = Math.ceil(total / limit);
 
   if (isLoading) {
-    return <p>Загрузка...</p>;
+    return <Loading />;
   }
 
   const handleNextPage = () => {

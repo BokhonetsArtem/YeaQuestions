@@ -2,11 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import questionApi from "./services/questionApi";
 import specializationApi from "./services/specializationApi";
 import skillsApi from "./services/skillsApi";
+import { filterReducer } from "./slices/filter";
+import {
+  useDispatch,
+  useSelector,
+  type TypedUseSelectorHook,
+} from "react-redux";
 
 const rootReducer = {
   [questionApi.reducerPath]: questionApi.reducer,
   [specializationApi.reducerPath]: specializationApi.reducer,
   [skillsApi.reducerPath]: skillsApi.reducer,
+  filterReducer,
 };
 
 export const store = configureStore({
@@ -18,5 +25,8 @@ export const store = configureStore({
       .concat(skillsApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+type RootState = ReturnType<typeof store.getState>;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

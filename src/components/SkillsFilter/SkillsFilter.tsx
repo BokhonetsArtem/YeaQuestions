@@ -2,9 +2,12 @@ import { useState } from "react";
 import styles from "./SkillsFilter.module.css";
 import { useGetSkillsQuery } from "../../store/services/skillsApi";
 import skillImgSkeleton from "../../shared/assets/images/skill-img-skeleton.svg";
+import { useAppDispatch } from "../../store";
+import { toggleSkills } from "../../store/slices/filter";
 
 const SkillsFilter = () => {
   const [allItems, setAllItems] = useState(false);
+  const dispatch = useAppDispatch();
 
   const { data: items = [] } = useGetSkillsQuery();
 
@@ -17,7 +20,11 @@ const SkillsFilter = () => {
       <div className={styles.itemWrapper}>
         {previewItems.map((item) => {
           return (
-            <button className={styles.button} key={item.id}>
+            <button
+              onClick={() => dispatch(toggleSkills(item.title))}
+              className={styles.button}
+              key={item.id}
+            >
               <img
                 src={skillImgSkeleton}
                 alt="Skill's image"
@@ -34,7 +41,11 @@ const SkillsFilter = () => {
         {allItems &&
           restItems.map((item) => {
             return (
-              <button className={styles.button} key={item.id}>
+              <button
+                onClick={() => dispatch(toggleSkills(item.title))}
+                className={styles.button}
+                key={item.id}
+              >
                 <img
                   src={skillImgSkeleton}
                   alt="Skill's image"

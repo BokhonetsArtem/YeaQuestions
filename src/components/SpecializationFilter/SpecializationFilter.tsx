@@ -1,9 +1,12 @@
 import { useState } from "react";
 import styles from "./SpecializationFilter.module.css";
 import { useGetSpecializationQuery } from "../../store/services/specializationApi";
+import { toggleSpecialization } from "../../store/slices/filter";
+import { useAppDispatch } from "../../store";
 
 const SpecializationFilter = () => {
   const [allItems, setAllItems] = useState(false);
+  const dispatch = useAppDispatch();
 
   const { data: items = [] } = useGetSpecializationQuery();
 
@@ -16,7 +19,11 @@ const SpecializationFilter = () => {
       <div className={styles.itemWrapper}>
         {previewItems.map((item) => {
           return (
-            <button className={styles.button} key={item.id}>
+            <button
+              onClick={() => dispatch(toggleSpecialization(item.title))}
+              className={styles.button}
+              key={item.id}
+            >
               {item.title}
             </button>
           );

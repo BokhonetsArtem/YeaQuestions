@@ -2,6 +2,7 @@ import styles from "./ComplexityFilter.module.css";
 import { complexity } from "../../constants";
 import { toggleComplexity } from "../../store/slices/filter";
 import { useAppDispatch } from "../../store";
+import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const ComplexityFilter = () => {
   const dispatch = useAppDispatch();
@@ -10,15 +11,12 @@ const ComplexityFilter = () => {
     <div className={styles.complexityBlock}>
       <h5>Уровень сложности</h5>
       <div className={styles.itemWrapper}>
-        {complexity.map((lvl, index) => {
+        {complexity.map((lvls, index) => {
           return (
-            <button
-              onClick={() => dispatch(toggleComplexity(lvl))}
-              className={styles.button}
+            <ButtonForFilter
+              onClick={() => dispatch(toggleComplexity(lvls))}
               key={index}
-            >
-              {lvl}
-            </button>
+            >{`${lvls[0]}-${lvls[lvls.length - 1]}`}</ButtonForFilter>
           );
         })}
       </div>

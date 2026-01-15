@@ -1,35 +1,54 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../../constants";
-
-interface ISkill {
-  title: string;
-  imageSrc: string;
-}
+import type { ISkill } from "./skillsApi";
+import type { ISpecialization } from "./specializationApi";
 
 export interface IQuestion {
   id: string;
-  imageSrc: string;
+  rate: number;
   title: string;
+  imageSrc: string;
+  skills: ISkill[];
+  complexity: number;
+  longAnswer: string;
+  keywords: string[];
   description: string;
   shortAnswer: string;
-  longAnswer: string;
-  rate: number;
-  complexity: number;
-  keywords: string[];
-  questionSkills: ISkill[];
+  specializations: ISpecialization[];
 }
+
+type QuestionsParams = {
+  page: number;
+  limit: number;
+  search: string;
+  rate: number[];
+  skills: ISkill[];
+  complexity: number[][];
+  specializations: ISpecialization[];
+};
+
+const finalParams = (params: Partial<QuestionsParams>) => {
+  const result: Record<string, string> = {};
+  Object.entries(params).forEach(([key, value]) => {
+    if (
+      value !== undefined && value !== null && Array.isArray(value)
+        ? value.length > 0
+        : true
+    ) {
+      result[key] = Array.isArray(value) ? value.join(",") : String(value);
+    }
+  });
+  return result;
+};
 
 const questionApi = createApi({
   reducerPath: "questionApi",
   baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
   endpoints: (builder) => ({
     getQuestions: builder.query({
-      query: ({ page = 1, limit = 10 }) => ({
+      query: (params: QuestionsParams) => ({
         url: `questions/public-questions`,
-        params: {
-          page,
-          limit,
-        },
+        params: params ? finalParams(params) : undefined,
       }),
       transformResponse: (response: { data: any[]; total: number }) => {
         return { data: response.data, total: response.total };

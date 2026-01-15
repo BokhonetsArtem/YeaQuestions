@@ -8,12 +8,14 @@ import {
   useSelector,
   type TypedUseSelectorHook,
 } from "react-redux";
+import { selectedSpecializationsReducer } from "./slices/selectedSpecializations";
 
 const rootReducer = {
   [questionApi.reducerPath]: questionApi.reducer,
   [specializationApi.reducerPath]: specializationApi.reducer,
   [skillsApi.reducerPath]: skillsApi.reducer,
   filterReducer,
+  selectedSpecializationsReducer,
 };
 
 export const store = configureStore({

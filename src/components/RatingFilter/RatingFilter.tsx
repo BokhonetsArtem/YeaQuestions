@@ -2,6 +2,7 @@ import styles from "./RatingFilter.module.css";
 import { rating } from "../../constants";
 import { toggleRating } from "../../store/slices/filter";
 import { useAppDispatch } from "../../store";
+import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const RatingFilter = () => {
   const dispatch = useAppDispatch();
@@ -12,13 +13,12 @@ const RatingFilter = () => {
       <div className={styles.itemWrapper}>
         {rating.map((rate, index) => {
           return (
-            <button
+            <ButtonForFilter
               onClick={() => dispatch(toggleRating(rate))}
-              className={styles.button}
               key={index}
             >
               {rate}
-            </button>
+            </ButtonForFilter>
           );
         })}
       </div>

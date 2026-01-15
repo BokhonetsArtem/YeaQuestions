@@ -1,8 +1,12 @@
 import { useState } from "react";
 import styles from "./SpecializationFilter.module.css";
-import { useGetSpecializationQuery } from "../../store/services/specializationApi";
+import {
+  useGetSpecializationQuery,
+  type ISpecialization,
+} from "../../store/services/specializationApi";
 import { toggleSpecialization } from "../../store/slices/filter";
 import { useAppDispatch } from "../../store";
+import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const SpecializationFilter = () => {
   const [allItems, setAllItems] = useState(false);
@@ -13,19 +17,19 @@ const SpecializationFilter = () => {
   const previewItems = items.slice(0, 5);
   const restItems = items.slice(5);
 
+  const handleClick = (item: ISpecialization) => {
+    dispatch(toggleSpecialization(item));
+  };
+
   return (
     <div className={styles.specializationBlock}>
       <h5>Специализация</h5>
       <div className={styles.itemWrapper}>
         {previewItems.map((item) => {
           return (
-            <button
-              onClick={() => dispatch(toggleSpecialization(item.title))}
-              className={styles.button}
-              key={item.id}
-            >
+            <ButtonForFilter onClick={() => handleClick(item)} key={item.id}>
               {item.title}
-            </button>
+            </ButtonForFilter>
           );
         })}
       </div>
@@ -34,9 +38,9 @@ const SpecializationFilter = () => {
         {allItems &&
           restItems.map((item) => {
             return (
-              <button className={styles.button} key={item.id}>
+              <ButtonForFilter onClick={() => handleClick(item)} key={item.id}>
                 {item.title}
-              </button>
+              </ButtonForFilter>
             );
           })}
       </div>

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../../constants";
 
-interface ISpecialization {
+export interface ISpecialization {
   id: string;
   title: string;
 }

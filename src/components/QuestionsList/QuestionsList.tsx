@@ -5,13 +5,15 @@ import QuestionItem from "../QuestionItem/QuestionItem";
 import styles from "./QuestionsList.module.css";
 import { limit } from "../../constants";
 import Loading from "../Loading/Loading";
+import { useAppSelector } from "../../store";
 
 const QuestionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useGetQuestionsQuery({
-    page: currentPage,
-    limit,
-  });
+  const filters = useAppSelector((state) => state.filterReducer);
+  const params = { ...filters, page: currentPage, limit };
+
+  const { data, isLoading } = useGetQuestionsQuery(params);
+
   const questions = data?.data ?? [];
   const total = data?.total ?? 0;
   const totalPages = Math.ceil(total / limit);

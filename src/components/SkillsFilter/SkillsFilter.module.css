@@ -12,33 +12,10 @@ h5 {
   color: #474747;
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 39px;
-  border: 1px solid #bababa;
-  border-radius: 12px;
-  padding: 10px 12px;
-  height: 39px;
-  background-color: white;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 120%;
-  color: #303030;
-  margin-inline-end: 8px;
-}
-
-.button:hover {
-  color: white;
-  background-color: #5509cc;
-}
-
 .itemWrapper {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 8px;
+  column-gap: 8px;
   width: 296px;
 }
 
@@ -52,8 +29,4 @@ h5 {
   background-color: white;
   border: none;
   cursor: pointer;
-}
-
-img {
-  margin-right: 8px;
 }

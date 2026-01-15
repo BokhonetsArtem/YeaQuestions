@@ -4,6 +4,7 @@ import { useGetSkillsQuery } from "../../store/services/skillsApi";
 import skillImgSkeleton from "../../shared/assets/images/skill-img-skeleton.svg";
 import { useAppDispatch } from "../../store";
 import { toggleSkills } from "../../store/slices/filter";
+import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const SkillsFilter = () => {
   const [allItems, setAllItems] = useState(false);
@@ -20,9 +21,8 @@ const SkillsFilter = () => {
       <div className={styles.itemWrapper}>
         {previewItems.map((item) => {
           return (
-            <button
-              onClick={() => dispatch(toggleSkills(item.title))}
-              className={styles.button}
+            <ButtonForFilter
+              onClick={() => dispatch(toggleSkills(item))}
               key={item.id}
             >
               <img
@@ -32,7 +32,7 @@ const SkillsFilter = () => {
                 height={18}
               />
               {item.title}
-            </button>
+            </ButtonForFilter>
           );
         })}
       </div>
@@ -41,9 +41,8 @@ const SkillsFilter = () => {
         {allItems &&
           restItems.map((item) => {
             return (
-              <button
-                onClick={() => dispatch(toggleSkills(item.title))}
-                className={styles.button}
+              <ButtonForFilter
+                onClick={() => dispatch(toggleSkills(item))}
                 key={item.id}
               >
                 <img
@@ -53,7 +52,7 @@ const SkillsFilter = () => {
                   height={18}
                 />
                 {item.title}
-              </button>
+              </ButtonForFilter>
             );
           })}
       </div>

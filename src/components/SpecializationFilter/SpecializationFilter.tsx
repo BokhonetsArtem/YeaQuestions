@@ -5,13 +5,16 @@ import {
   type ISpecialization,
 } from "../../store/services/specializationApi";
 import { toggleSpecialization } from "../../store/slices/filter";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const SpecializationFilter = () => {
   const [allItems, setAllItems] = useState(false);
-  const dispatch = useAppDispatch();
+  const chosenSpecializationId = useAppSelector(
+    (state) => state.filterReducer.specializationId
+  );
 
+  const dispatch = useAppDispatch();
   const { data: items = [] } = useGetSpecializationQuery();
 
   const previewItems = items.slice(0, 5);
@@ -27,7 +30,11 @@ const SpecializationFilter = () => {
       <div className={styles.itemWrapper}>
         {previewItems.map((item) => {
           return (
-            <ButtonForFilter onClick={() => handleClick(item)} key={item.id}>
+            <ButtonForFilter
+              onClick={() => handleClick(item)}
+              key={item.id}
+              selected={chosenSpecializationId === item.id}
+            >
               {item.title}
             </ButtonForFilter>
           );
@@ -38,7 +45,11 @@ const SpecializationFilter = () => {
         {allItems &&
           restItems.map((item) => {
             return (
-              <ButtonForFilter onClick={() => handleClick(item)} key={item.id}>
+              <ButtonForFilter
+                onClick={() => handleClick(item)}
+                key={item.id}
+                selected={chosenSpecializationId === item.id}
+              >
                 {item.title}
               </ButtonForFilter>
             );

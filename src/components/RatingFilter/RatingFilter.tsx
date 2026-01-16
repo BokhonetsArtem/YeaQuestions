@@ -3,19 +3,30 @@ import { rating } from "../../constants";
 import { toggleRating } from "../../store/slices/filter";
 import { useAppDispatch } from "../../store";
 import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
+import { useState } from "react";
 
 const RatingFilter = () => {
   const dispatch = useAppDispatch();
+  const [selectedRates, setSelectedRates] = useState<number[]>([]);
+
+  const handleClick = (rate: number) => {
+    dispatch(toggleRating(rate));
+
+    setSelectedRates((prev) =>
+      prev.includes(rate) ? prev.filter((r) => r !== rate) : [...prev, rate]
+    );
+  };
 
   return (
     <div className={styles.ratingBlock}>
       <h5>Рейтинг</h5>
       <div className={styles.itemWrapper}>
-        {rating.map((rate, index) => {
+        {rating.map((rate) => {
           return (
             <ButtonForFilter
-              onClick={() => dispatch(toggleRating(rate))}
-              key={index}
+              onClick={() => handleClick(rate)}
+              key={rate}
+              selected={selectedRates.includes(rate)}
             >
               {rate}
             </ButtonForFilter>

@@ -1,16 +1,18 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import styles from "./ButtonForFilter.module.css";
 
 interface ButtonForFilterProps {
   children: ReactNode;
   onClick: () => void;
+  selected: boolean;
 }
 
-const ButtonForFilter = ({ children, onClick }: ButtonForFilterProps) => {
-  const [selected, setSelected] = useState(false);
-
+const ButtonForFilter = ({
+  children,
+  onClick,
+  selected,
+}: ButtonForFilterProps) => {
   const handleClick = () => {
-    setSelected((prevState) => !prevState);
     onClick();
   };
 

@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_BASE_URL } from "../../constants";
 import type { ISkill } from "./skillsApi";
 import type { ISpecialization } from "./specializationApi";
+import { finalParams } from "../../utils/finalParams";
 
 export interface IQuestion {
   id: string;
@@ -17,28 +18,19 @@ export interface IQuestion {
   specializations: ISpecialization[];
 }
 
-type QuestionsParams = {
+export type QuestionsParams = {
   page: number;
   limit: number;
-  search: string;
   rate: number[];
-  skills: ISkill[];
-  complexity: number[][];
-  specializations: ISpecialization[];
+  keywords: string[];
+  skillsIds: string[];
+  complexity: number[];
+  specializationId: number | null;
 };
 
-const finalParams = (params: Partial<QuestionsParams>) => {
-  const result: Record<string, string> = {};
-  Object.entries(params).forEach(([key, value]) => {
-    if (
-      value !== undefined && value !== null && Array.isArray(value)
-        ? value.length > 0
-        : true
-    ) {
-      result[key] = Array.isArray(value) ? value.join(",") : String(value);
-    }
-  });
-  return result;
+type QuestionsResponse = {
+  data: IQuestion[];
+  total: number;
 };
 
 const questionApi = createApi({
@@ -48,9 +40,9 @@ const questionApi = createApi({
     getQuestions: builder.query({
       query: (params: QuestionsParams) => ({
         url: `questions/public-questions`,
-        params: params ? finalParams(params) : undefined,
+        params: finalParams(params),
       }),
-      transformResponse: (response: { data: any[]; total: number }) => {
+      transformResponse: (response: QuestionsResponse) => {
         return { data: response.data, total: response.total };
       },
     }),

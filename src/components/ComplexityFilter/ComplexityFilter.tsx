@@ -11,12 +11,14 @@ const ComplexityFilter = () => {
     <div className={styles.complexityBlock}>
       <h5>Уровень сложности</h5>
       <div className={styles.itemWrapper}>
-        {complexity.map((lvls, index) => {
+        {complexity.map((lvl, index) => {
           return (
             <ButtonForFilter
-              onClick={() => dispatch(toggleComplexity(lvls))}
+              onClick={() => dispatch(toggleComplexity(lvl.values))}
               key={index}
-            >{`${lvls[0]}-${lvls[lvls.length - 1]}`}</ButtonForFilter>
+            >
+              {lvl.title}
+            </ButtonForFilter>
           );
         })}
       </div>

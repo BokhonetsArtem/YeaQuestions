@@ -3,19 +3,19 @@ import type { ISpecialization } from "../services/specializationApi";
 import type { ISkill } from "../services/skillsApi";
 
 interface IFilters {
-  search: string;
   rate: number[];
-  skills: ISkill[];
-  complexity: number[][];
-  specializations: ISpecialization[];
+  keywords: string[];
+  skillsIds: string[];
+  complexity: number[];
+  specializationId: number | null;
 }
 
 const initialState: IFilters = {
   rate: [],
-  search: "",
-  skills: [],
+  keywords: [],
+  skillsIds: [],
   complexity: [],
-  specializations: [],
+  specializationId: null,
 };
 
 const filterSlice = createSlice({
@@ -23,39 +23,32 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     toggleSpecialization: (state, action: PayloadAction<ISpecialization>) => {
-      if (state.specializations.includes(action.payload)) {
-        state.specializations = state.specializations.filter(
-          (item) => item.id !== action.payload.id
-        );
+      if (state.specializationId === action.payload.id) {
+        state.specializationId = null;
       } else {
-        state.specializations.push(action.payload);
+        state.specializationId = action.payload.id;
       }
     },
 
     toggleSkills: (state, action: PayloadAction<ISkill>) => {
-      if (state.skills.includes(action.payload)) {
-        state.skills = state.skills.filter(
-          (item) => item.id !== action.payload.id
+      if (state.skillsIds.includes(action.payload.id)) {
+        state.skillsIds = state.skillsIds.filter(
+          (id) => id !== action.payload.id
         );
       } else {
-        state.skills.push(action.payload);
+        state.skillsIds.push(action.payload.id);
       }
     },
 
     toggleComplexity: (state, action: PayloadAction<number[]>) => {
-      const isSameArray = (a: number[], b: number[]) =>
-        a.length === b.length && a.every((value, index) => value === b[index]);
+      const payloadInState = state.complexity.includes(action.payload[0]);
 
-      const exists = state.complexity.some((item) =>
-        isSameArray(item, action.payload)
-      );
-
-      if (exists) {
+      if (payloadInState) {
         state.complexity = state.complexity.filter(
-          (item) => !isSameArray(item, action.payload)
+          (lvl) => !action.payload.includes(lvl)
         );
       } else {
-        state.complexity.push(action.payload);
+        state.complexity = state.complexity.concat(action.payload);
       }
     },
 
@@ -68,7 +61,8 @@ const filterSlice = createSlice({
     },
 
     setSearch: (state, action: PayloadAction<string>) => {
-      state.search = action.payload;
+      const formattedString = action.payload.trim().split(/\s+/);
+      state.keywords = formattedString;
     },
   },
 });

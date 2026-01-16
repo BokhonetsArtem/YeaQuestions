@@ -10,6 +10,7 @@ import { useAppSelector } from "../../store";
 const QuestionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const filters = useAppSelector((state) => state.filterReducer);
+
   const params = { ...filters, page: currentPage, limit };
 
   const { data, isLoading } = useGetQuestionsQuery(params);

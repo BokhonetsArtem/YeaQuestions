@@ -9,7 +9,7 @@ export interface IQuestion {
   rate: number;
   title: string;
   imageSrc: string;
-  skills: ISkill[];
+  questionSkills: ISkill[];
   complexity: number;
   longAnswer: string;
   keywords: string[];

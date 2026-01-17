@@ -6,6 +6,7 @@ import styles from "./QuestionsList.module.css";
 import { limit } from "../../constants";
 import Loading from "../Loading/Loading";
 import { useAppSelector } from "../../store";
+import EmptyList from "../EmptyList/EmptyList";
 
 const QuestionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,17 +44,23 @@ const QuestionsList = () => {
     <div className={styles.list}>
       <h3>Вопросы</h3>
       <ul className={styles.items}>
-        {questions.map((question) => {
-          return <QuestionItem key={question.id} question={question} />;
-        })}
+        {questions.length === 0 ? (
+          <EmptyList />
+        ) : (
+          questions.map((question) => {
+            return <QuestionItem key={question.id} question={question} />;
+          })
+        )}
       </ul>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        handleNextPage={handleNextPage}
-        handlePrevPage={handlePrevPage}
-        handlePageClick={handlePageClick}
-      />
+      {questions.length !== 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handleNextPage={handleNextPage}
+          handlePrevPage={handlePrevPage}
+          handlePageClick={handlePageClick}
+        />
+      )}
     </div>
   );
 };

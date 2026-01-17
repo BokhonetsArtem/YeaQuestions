@@ -3,13 +3,12 @@ import { useState } from "react";
 import { complexity } from "../../constants";
 import { toggleComplexity } from "../../store/slices/filter";
 import { useAppDispatch } from "../../store";
+import { getKey } from "../../utils/getKey";
 import ButtonForFilter from "../ButtonForFilter/ButtonForFilter";
 
 const ComplexityFilter = () => {
   const dispatch = useAppDispatch();
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
-
-  const getKey = (values: number[]) => values.join(",");
 
   const handleClick = (values: number[]) => {
     dispatch(toggleComplexity(values));

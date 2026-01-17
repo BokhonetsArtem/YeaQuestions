@@ -12,10 +12,6 @@ const QuestionDetails = () => {
     skip: !id,
   });
 
-  if (isLoading || !question) {
-    return <Loading />;
-  }
-
   return (
     <div className={styles.wrapper}>
       <Link to={"/"}>
@@ -23,8 +19,14 @@ const QuestionDetails = () => {
       </Link>
 
       <div className={styles.content}>
-        <QuestionInfo question={question} />
-        <QuestionSidebar question={question} />
+        {isLoading || !question ? (
+          <Loading />
+        ) : (
+          <>
+            <QuestionInfo question={question} />
+            <QuestionSidebar question={question} />
+          </>
+        )}
       </div>
     </div>
   );

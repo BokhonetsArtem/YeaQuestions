@@ -10,4 +10,6 @@
 .content {
   display: flex;
   column-gap: 20px;
+  max-width: 804px;
+  width: 100%;
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./QuestionsList.module.css";
-import { useAppSelector } from "@/1_app/appStore";
 import { limit } from "@/6_shared/constants";
 import { QuestionItem, useGetQuestionsQuery } from "@/5_entities/question";
 import { EmptyList, Loading } from "@/6_shared/UI";
 import { Pagination } from "@/4_features/question/pagination";
+import { useAppSelector } from "@/6_shared/storeHooks";
 
 const QuestionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);

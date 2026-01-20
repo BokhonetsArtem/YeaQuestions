@@ -16,8 +16,8 @@ export interface IQuestion {
 }
 
 export type QuestionsParams = {
-  page: number;
-  limit: number;
+  title: string;
+  currentPage: number;
   rate: number[];
   keywords: string[];
   skillsIds: string[];

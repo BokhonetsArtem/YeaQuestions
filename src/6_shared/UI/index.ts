@@ -3,3 +3,4 @@ export { default as ButtonBack } from "./ButtonBack/ButtonBack";
 export { default as ButtonForFilter } from "./ButtonForFilter/ButtonForFilter";
 export { default as EmptyList } from "./EmptyList/EmptyList";
 export { default as Skeleton } from "./Skeleton/Skeleton";
+export { default as Pagination } from "./Pagination/Pagination";

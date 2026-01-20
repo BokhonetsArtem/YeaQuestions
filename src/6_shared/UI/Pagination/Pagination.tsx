@@ -1,25 +1,24 @@
-import getPaginationPages from "@/6_shared/utils/getPaginationPages";
-import arrowLeft from "@/6_shared/assets/icons/arrow-left.svg";
-import arrowRight from "@/6_shared/assets/icons/arrow-right.svg";
 import styles from "./Pagination.module.css";
+import arrowLeft from "../../assets/icons/arrow-left.svg";
+import arrowRight from "../../assets/icons/arrow-right.svg";
 
-interface PaginationProps {
+type PaginationProps = {
+  pages: (string | number)[];
   currentPage: number;
   totalPages: number;
   handleNextPage: () => void;
   handlePrevPage: () => void;
   handlePageClick: (page: number) => void;
-}
+};
 
 const Pagination = ({
+  pages,
   currentPage,
   totalPages,
   handleNextPage,
   handlePrevPage,
   handlePageClick,
 }: PaginationProps) => {
-  const pages = getPaginationPages(currentPage, totalPages);
-
   return (
     <div className={styles.pagination}>
       <button

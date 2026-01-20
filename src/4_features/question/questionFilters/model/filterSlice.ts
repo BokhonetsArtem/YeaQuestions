@@ -5,9 +5,11 @@ import type { ISkill } from "../../../../5_entities/skills";
 
 const initialState: IFilters = {
   rate: [],
+  title: "",
   keywords: [],
   skillsIds: [],
   complexity: [],
+  currentPage: 1,
   specializationId: null,
 };
 
@@ -53,17 +55,30 @@ const filterSlice = createSlice({
       }
     },
 
-    setSearch: (state, action: PayloadAction<string>) => {
-      const formattedString = action.payload.trim().split(/\s+/);
+    setTitle: (state, action: PayloadAction<string>) => {
+      state.title = action.payload.trim().toLocaleLowerCase();
+    },
+
+    setKeywords: (state, action: PayloadAction<string>) => {
+      const formattedString = action.payload
+        .trim()
+        .toLocaleLowerCase()
+        .split(/\s+/);
       state.keywords = formattedString;
+    },
+
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
     },
   },
 });
 
 export const {
-  setSearch,
+  setTitle,
+  setKeywords,
   toggleSkills,
   toggleRating,
+  setCurrentPage,
   toggleComplexity,
   toggleSpecialization,
 } = filterSlice.actions;

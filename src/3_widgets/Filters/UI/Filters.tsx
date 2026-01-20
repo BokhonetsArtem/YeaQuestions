@@ -4,7 +4,7 @@ import {
   SearchFilter,
   SkillsFilter,
   SpecializationFilter,
-} from "@/4_features/question/filter";
+} from "@/4_features/question/questionFilters";
 import styles from "./Filters.module.css";
 
 const Filters = () => {

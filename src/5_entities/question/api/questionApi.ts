@@ -1,15 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { API_BASE_URL } from "@/6_shared/constants";
 import { finalParams } from "@/6_shared/utils/finalParams";
+import { baseApi } from "@/6_shared/api";
 import type {
   IQuestion,
   QuestionsParams,
   QuestionsResponse,
 } from "../model/types";
 
-const questionApi = createApi({
-  reducerPath: "questionApi",
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+const questionApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getQuestions: builder.query({
       query: (params: QuestionsParams) => ({

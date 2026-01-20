@@ -1,10 +1,7 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { ISpecialization } from "../model/types";
-import { API_BASE_URL } from "@/6_shared/constants";
+import { baseApi } from "@/6_shared/api";
 
-const specializationApi = createApi({
-  reducerPath: "specializationApi",
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
+const specializationApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getSpecialization: builder.query<ISpecialization[], void>({
       query: () => ({
